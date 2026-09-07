@@ -1,8 +1,5 @@
 name: GitHub Actions Demo
-on:
-  workflow_dispatch:
-  schedule:
-    - cron: "*/1 * * * *"  # toutes les minutes
+on: [push]
 
 jobs:
   Explore-GitHub-Actions:
@@ -10,5 +7,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - run: echo "🕒 Cron-triggered run at $(date)"
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - run: python job.py
+
+      - name: Create output file
+        run: echo "Résultat du job: $(date)" > output.txt
