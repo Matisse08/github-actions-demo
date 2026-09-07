@@ -1,6 +1,8 @@
 name: GitHub Actions Demo
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "*/1 * * * *"  # toutes les minutes
 
 jobs:
   Explore-GitHub-Actions:
@@ -8,5 +10,5 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - run: echo "🎉 The job was manually triggered."
+      - run: echo "🕒 Cron-triggered run at $(date)"
       - run: python job.py
